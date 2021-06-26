@@ -8,49 +8,54 @@ class Solution {
     private final static int NUM_OF_STUDENTS = 3;
 
     public int[] solution(int[] answers) {
-
         Student[] students = new Student[NUM_OF_STUDENTS];
-        int[] score = new int[NUM_OF_STUDENTS];
-
-        students[0] = new Student(new int[] { 1, 2, 3, 4, 5 });
-        students[1] = new Student(new int[] { 2, 1, 2, 3, 2, 4, 2, 5 });
-        students[2] = new Student(new int[] { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 });
+        students[0] = new Student(1, new int[] { 1, 2, 3, 4, 5 });
+        students[1] = new Student(2, new int[] { 2, 1, 2, 3, 2, 4, 2, 5 });
+        students[2] = new Student(3, new int[] { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 });
 
         for (int i = 0; i < NUM_OF_STUDENTS; i++) {
-            score[i] = students[i].countOfAnswers(answers);
+            students[i].calculateScore(answers);
         }
 
         ArrayList<Integer> ret = new ArrayList<>();
         
         int maxScore = -1;
         for (int i = 0; i < NUM_OF_STUDENTS; i++) {
-            maxScore = Math.max(maxScore, score[i]);
+            maxScore = Math.max(maxScore, students[i].getScore());
         }
 
         for (int i = 0; i < NUM_OF_STUDENTS; i++) {
-            if (score[i] == maxScore)
-                ret.add(i + 1);
+            if (maxScore == students[i].getScore())
+                ret.add(students[i].getId());
         }
         
         return ret.stream().mapToInt(i -> i).toArray();
     }
 
     static class Student {
+        private int id;
         private int[] studentAnswers;
+        private int score;
 
-        public Student(int[] studentAnswers) {
+        public Student(int id, int[] studentAnswers) {
+            this.id = id;
             this.studentAnswers = studentAnswers;
         }
 
-        public int countOfAnswers(int[] answers) {
-            int count = 0;
-            int numOfstudentAnswers = studentAnswers.length;
-            for (int i = 0; i < answers.length; i++) {
-                if (answers[i] == studentAnswers[i % numOfstudentAnswers]) {
-                    count += 1;
+        public int getId() {
+            return id;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public void calculateScore(int[] rightAnswers) {
+            for (int i = 0; i < rightAnswers.length; i++) {
+                if (rightAnswers[i] == studentAnswers[i % studentAnswers.length]) {
+                    this.score += 1;
                 }
             }
-            return count;
         }
     }
 }
