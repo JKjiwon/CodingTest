@@ -1,3 +1,7 @@
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 /**
  * hashCode, equals를 조작한 풀이
  * HashSet 은 먼저 hashCode 를 비교 하고 hashCode가 같다면 equals 비교를 통해서 같음을 판단.
