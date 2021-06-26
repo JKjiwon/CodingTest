@@ -17,7 +17,7 @@ class Solution {
             students[i].calculateScore(answers);
         }
 
-        ArrayList<Integer> ret = new ArrayList<>();
+        ArrayList<Integer> maxScoreStudents = new ArrayList<>();
         
         int maxScore = -1;
         for (int i = 0; i < NUM_OF_STUDENTS; i++) {
@@ -26,10 +26,10 @@ class Solution {
 
         for (int i = 0; i < NUM_OF_STUDENTS; i++) {
             if (maxScore == students[i].getScore())
-                ret.add(students[i].getId());
+                maxScoreStudents.add(students[i].getId());
         }
         
-        return ret.stream().mapToInt(i -> i).toArray();
+        return maxScoreStudents.stream().mapToInt(i -> i).toArray();
     }
 
     static class Student {
