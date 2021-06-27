@@ -22,7 +22,7 @@ SELECT 컬럼명 ------------------- (5)
 6. ORDER BY : 추출된 데이터들을 정렬해줍니다.
 
 > WHERE 절에는 SELECT절의 alias를 쓸 수 없다.   
-왜냐햐면 WHERE 절이 실행되기전에 별칭이 만들어지지 않는다. 별칭은 이후에 실행된다.
+왜냐햐면 WHERE 절이 실행되기전에 별칭이 만들어지지 않는다. SELECT절은 이후에 실행된다.
 
 
 >참고 링크 https://data-make.tistory.com/23
