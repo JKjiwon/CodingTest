@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * 2차원 DP
  * d[i][j] = i, j 도착했을 때 최대값
@@ -18,12 +20,7 @@ class Solution {
                 d[i][j] = Math.max(temp, d[i - 1][j]) + triangle[i][j];
             }
         }
-
-        int answer = -1;
-        for (int i = 0; i < N; i++) {
-            answer = Math.max(answer, d[N-1][i]);
-        }
-
-        return answer;
+        
+        return Arrays.stream(d[N - 1]).max().getAsInt();
     }
 }
